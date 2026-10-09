@@ -6,10 +6,16 @@ const expenseSchema = new mongoose.Schema({
         required:true,
         trim:true
 
-    },amount:{
+    },
+    amount:{
         type:Number,
         required:true,
         min:0
+    },
+    Owner:{
+        type :mongoose.Schema.Types.ObjectId,
+        ref:"User",
+        required:true
     }
 
 },{timestamps: true})

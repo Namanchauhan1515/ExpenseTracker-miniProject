@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { createExpense, deleteExpense } from "./api/expenseApi.js";
 import "./App.css";
 
 function App(){
@@ -6,16 +7,36 @@ function App(){
   const [amount,setAmount]= useState('');
   const [expenses,setExpenses] = useState([]);
 
-  const handleExpenseAdd = ()=>{
-    if(title.trim()===''||amount.trim()==='') return;
-    setExpenses(prev=>[...prev,{id:Date.now(),title:title,amount:Number(amount)}])
-    setTitle('');
-    setAmount('');
-  }
+  async function handleExpenseAdd() {
+  if (title.trim() === "" || amount.trim() === "") return;
 
-  function handleDelete(DeleteExpenseId){
-    setExpenses(prev=>prev.filter((expense)=>expense.id!==DeleteExpenseId))
+  try {
+    const data = await createExpense({
+      title,
+      amount: Number(amount)
+    });
+
+    setExpenses(prev => [...prev, data.data]);
+
+    setTitle("");
+    setAmount("");
+
+  } catch (error) {
+    console.error("Error adding expense:", error.message);
   }
+}
+async function handleDelete(id) {
+  try {
+    await deleteExpense(id);
+
+    setExpenses(prev =>
+      prev.filter(expense => expense._id !== id)
+    );
+
+  } catch (error) {
+    console.error(error.message);
+  }
+}
 
     const total = expenses.reduce(
     (total, expense) => total + expense.amount,
@@ -35,9 +56,9 @@ function App(){
           {
             <ul className="expense-list">{
               expenses.map((expense)=>(
-                <li className="expense-item" key={expense.id}>
+                <li className="expense-item" key={expense._id}>
                   <strong>{expense.title}</strong>: ₹{expense.amount}
-                  <button className="delete-button" onClick={()=>handleDelete(expense.id)}>Delete</button>
+                  <button className="delete-button" onClick={()=>handleDelete(expense._id)}>Delete</button>
                 </li>
               ))
             }</ul>
