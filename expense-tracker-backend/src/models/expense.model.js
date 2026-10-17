@@ -12,7 +12,7 @@ const expenseSchema = new mongoose.Schema({
         required:true,
         min:0
     },
-    Owner:{
+    owner:{
         type :mongoose.Schema.Types.ObjectId,
         ref:"User",
         required:true
