@@ -16,3 +16,4 @@ const generateAccessAndRefreshToken = async (userId)=>{
         throw new apiError(500,"Failed to generate tokens",error)
     }
 }
+export { generateAccessAndRefreshToken }
