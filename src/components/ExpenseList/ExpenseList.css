@@ -1,0 +1,112 @@
+.expense-list-section {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Toolbar & Filters */
+.list-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 20px 24px;
+}
+
+.filters-row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 14px;
+  align-items: flex-end;
+}
+
+.filter-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.filter-item label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.filter-reset-item {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.filter-reset-item button {
+  height: 42px;
+}
+
+.toolbar-status {
+  display: flex;
+  justify-content: flex-end;
+  padding-top: 10px;
+  border-top: 1px solid var(--border-subtle);
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.toolbar-status strong {
+  color: var(--text-main);
+}
+
+/* Loading & Empty States */
+.list-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px 20px;
+  gap: 16px;
+  color: var(--text-secondary);
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.empty-icon {
+  font-size: 3rem;
+  margin-bottom: 12px;
+}
+
+.empty-state h3 {
+  font-size: 1.3rem;
+  margin-bottom: 6px;
+}
+
+.empty-state p {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  max-width: 420px;
+}
+
+/* Expense Cards Container */
+.expense-cards-container {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Pagination Bar */
+.pagination-bar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 10px;
+}
+
+.pagination-text {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}

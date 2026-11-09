@@ -1,0 +1,96 @@
+.expense-form-card {
+  padding: 30px;
+}
+
+.expense-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.currency-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.currency-input-wrapper .currency-symbol {
+  position: absolute;
+  left: 14px;
+  color: var(--primary);
+  font-weight: 700;
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+.currency-input {
+  padding-left: 32px !important;
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Category Presets */
+.category-presets-row {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.presets-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.presets-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.preset-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.preset-chip:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-main);
+  border-color: var(--border-hover);
+}
+
+.preset-chip.active {
+  background: rgba(99, 102, 241, 0.2);
+  border-color: var(--primary);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.submit-expense-btn {
+  padding: 12px 28px;
+  font-size: 1rem;
+}

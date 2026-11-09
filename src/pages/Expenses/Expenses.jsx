@@ -1,29 +1,29 @@
-import { useState } from "react";
+import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import ExpenseList from "../../components/ExpenseList/ExpenseList";
-import ExpenseForm from "../../components/ExpenseForm/ExpenseForm";
+import "./Expenses.css";
 
 function Expenses() {
-   const [newExpense, setNewExpense] = useState(null);
-   const [editingExpense, setEditingExpense] = useState(null);
-const handleExpenseAdded = (expenseData) => {
-    console.log("New Expense:", expenseData);
-    setNewExpense(expenseData);
-};
-
     return (
         <div className="expenses-page">
-
             <Sidebar />
 
-         <main>
-                <h1>My Expenses</h1>
+            <main className="expenses-main-content">
+                <div className="expenses-header">
+                    <div>
+                        <h1>My Expenses</h1>
+                        <p className="expenses-subtitle">
+                            View, manage, edit, and filter all your recorded expenses
+                        </p>
+                    </div>
 
-     <ExpenseForm onExpenseAdded={handleExpenseAdded} editingExpense={editingExpense}
-/>
-  <ExpenseList newExpense={newExpense} onEdit={setEditingExpense}/>          
-  </main>
+                    <Link to="/expenses/add" className="btn-primary">
+                        + Add Expense
+                    </Link>
+                </div>
 
+                <ExpenseList />
+            </main>
         </div>
     );
 }

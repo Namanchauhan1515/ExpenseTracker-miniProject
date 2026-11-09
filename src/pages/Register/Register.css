@@ -1,0 +1,121 @@
+.register-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 24px;
+  background: radial-gradient(circle at 50% 20%, #17223b 0%, #0b0f19 80%);
+  box-sizing: border-box;
+}
+
+.register-container h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  margin-bottom: 24px;
+  color: var(--text-main);
+  text-align: center;
+  letter-spacing: -0.02em;
+}
+
+.register-container form {
+  width: 100%;
+  max-width: 440px;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 32px 28px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.register-container form > div {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.register-container label {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+}
+
+.register-container input {
+  width: 100%;
+  padding: 12px 14px;
+  background: var(--bg-input);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  color: var(--text-main);
+  font-size: 0.95rem;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.register-container input[type="file"] {
+  padding: 9px 12px;
+  font-size: 0.88rem;
+  cursor: pointer;
+}
+
+.register-container input:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25);
+}
+
+.register-container button[type="submit"] {
+  width: 100%;
+  padding: 13px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+  color: #ffffff;
+  font-size: 1rem;
+  font-weight: 700;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  margin-top: 8px;
+  box-shadow: 0 4px 14px var(--primary-glow);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+}
+
+.register-container button[type="submit"]:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.register-container button[type="submit"]:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.register-container .error-message {
+  width: 100%;
+  max-width: 440px;
+  background: var(--danger-bg);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #fca5a5;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  margin-bottom: 16px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.register-container > p {
+  margin-top: 20px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+.register-container > p a {
+  color: var(--primary);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.register-container > p a:hover {
+  text-decoration: underline;
+}

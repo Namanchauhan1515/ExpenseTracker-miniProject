@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-
 import { useAuth } from "../../hooks/useAuth";
+import { loginUser } from "../../services/userApi";
+import "./Login.css";
 
 function Login() {
 
@@ -80,20 +81,7 @@ function Login() {
             // API Request
             // =========================
 
-            const response = await fetch(
-                "http://localhost:3000/api/v1/users/login",
-                {
-                    method: "POST",
-
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-
-                    credentials: "include",
-
-                    body: JSON.stringify(loginData)
-                }
-            );
+            const response = await loginUser(loginData);
 
 
             const data = await response.json();

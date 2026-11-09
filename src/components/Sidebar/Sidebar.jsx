@@ -1,35 +1,97 @@
-import { Link, useNavigate } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../hooks/useAuth";
+import "./Sidebar.css";
 
 function Sidebar() {
-
     const navigate = useNavigate();
-    const { logout } = useAuth();
+    const { user, logout } = useAuth();
 
-    const handleLogout = () => {
-        logout();
+    const handleLogout = async () => {
+        await logout();
         navigate("/login");
     };
 
     return (
         <aside className="sidebar">
+            <div className="sidebar-top">
+                <div className="sidebar-brand">
+                    <h2>Expense Tracker</h2>
+                </div>
 
-            <h2>Expense Tracker</h2>
+                <nav className="sidebar-nav">
+                    <NavLink
+                        to="/dashboard"
+                        className={({ isActive }) =>
+                            `sidebar-link ${isActive ? "active" : ""}`
+                        }
+                    >
+                        <span>📊</span>
+                        <span>Dashboard</span>
+                    </NavLink>
 
-            <nav>
-                <Link to="/dashboard">
-                    Dashboard
-                </Link>
+                    <NavLink
+                        to="/expenses"
+                        className={({ isActive }) =>
+                            `sidebar-link ${isActive ? "active" : ""}`
+                        }
+                    >
+                        <span>💳</span>
+                        <span>Expenses</span>
+                    </NavLink>
 
-                <Link to="/expenses">
-                    Expenses
-                </Link>
-            </nav>
+                    <NavLink
+                        to="/expenses/add"
+                        className={({ isActive }) =>
+                            `sidebar-link ${isActive ? "active" : ""}`
+                        }
+                    >
+                        <span>➕</span>
+                        <span>Add Expense</span>
+                    </NavLink>
 
-            <button onClick={handleLogout}>
-                Logout
-            </button>
+                    <NavLink
+                        to="/profile"
+                        className={({ isActive }) =>
+                            `sidebar-link ${isActive ? "active" : ""}`
+                        }
+                    >
+                        <span>👤</span>
+                        <span>Profile & Security</span>
+                    </NavLink>
+                </nav>
+            </div>
 
+            <div className="sidebar-bottom">
+                {user && (
+                    <Link to="/profile" className="sidebar-user-info-link" title="View Profile">
+                        <div className="sidebar-user-info">
+                            {user.avatar ? (
+                                <img
+                                    src={user.avatar}
+                                    alt={user.username || "Avatar"}
+                                    className="sidebar-avatar"
+                                />
+                            ) : (
+                                <div className="sidebar-avatar-placeholder">
+                                    {(user.username?.[0] || "U").toUpperCase()}
+                                </div>
+                            )}
+                            <div className="sidebar-user-details">
+                                <span className="sidebar-username">{user.username}</span>
+                                <span className="sidebar-email">{user.email}</span>
+                            </div>
+                        </div>
+                    </Link>
+                )}
+
+                <button
+                    type="button"
+                    className="sidebar-logout-btn"
+                    onClick={handleLogout}
+                >
+                    Logout
+                </button>
+            </div>
         </aside>
     );
 }

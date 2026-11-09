@@ -1,0 +1,47 @@
+.expenses-page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-main);
+}
+
+.expenses-main-content {
+  flex: 1;
+  padding: 36px 40px;
+  max-width: 1320px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.expenses-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  gap: 16px;
+}
+
+.expenses-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.expenses-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .expenses-page {
+    flex-direction: column;
+  }
+  .expenses-main-content {
+    padding: 24px 16px;
+  }
+  .expenses-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

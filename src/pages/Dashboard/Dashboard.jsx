@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Sidebar from "../../components/Sidebar/Sidebar";
 import SummaryCard from "../../components/SummaryCard/SummaryCard";
+import { getDashboardSummary } from "../../services/dashboardApi";
+import "./Dashboard.css";
 
 function Dashboard() {
     const [summary, setSummary] = useState({
@@ -9,20 +12,18 @@ function Dashboard() {
         highestExpense: 0,
         lowestExpense: 0
     });
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState("");
 
     useEffect(() => {
         const fetchSummary = async () => {
             try {
-                const response = await fetch(
-                    "http://localhost:3000/api/v1/dashboard/summary",
-                    {
-                        credentials: "include"
-                    }
-                );
+                setLoading(true);
+                setError("");
+
+                const response = await getDashboardSummary();
 
                 const data = await response.json();
-
-                console.log("Summary response:", data);
 
                 if (!response.ok) {
                     throw new Error(
@@ -31,9 +32,11 @@ function Dashboard() {
                 }
 
                 setSummary(data.data.summary);
-
-            } catch (error) {
-                console.error("Summary error:", error);
+            } catch (err) {
+                console.error("Summary error:", err);
+                setError(err.message || "Failed to load dashboard summary");
+            } finally {
+                setLoading(false);
             }
         };
 
@@ -41,40 +44,54 @@ function Dashboard() {
     }, []);
 
     return (
-        <div className="dashboard">
-
+        <div className="dashboard-page">
             <Sidebar />
 
-            <main className="dashboard-content">
+            <main className="dashboard-main-content">
+                <div className="dashboard-header">
+                    <div>
+                        <h1>Dashboard</h1>
+                        <p className="dashboard-subtitle">
+                            Overview of your overall financial spending
+                        </p>
+                    </div>
 
-                <h1>Dashboard</h1>
+                    <Link to="/expenses/add" className="btn-primary">
+                        + Add Expense
+                    </Link>
+                </div>
 
-                <section className="summary-section">
+                {error && <div className="alert-error" style={{ marginBottom: 20 }}>{error}</div>}
 
-                    <SummaryCard
-                        title="Total Expense"
-                        amount={summary.totalAmount}
-                    />
+                {loading ? (
+                    <div className="dashboard-loading">
+                        <div className="spinner"></div>
+                        <span>Loading summary...</span>
+                    </div>
+                ) : (
+                    <section className="summary-section">
+                        <SummaryCard
+                            title="Total Expense"
+                            amount={summary.totalAmount}
+                        />
 
-                    <SummaryCard
-                        title="Average Expense"
-                        amount={summary.averageAmount}
-                    />
+                        <SummaryCard
+                            title="Average Expense"
+                            amount={summary.averageAmount}
+                        />
 
-                    <SummaryCard
-                        title="Highest Expense"
-                        amount={summary.highestExpense}
-                    />
+                        <SummaryCard
+                            title="Highest Expense"
+                            amount={summary.highestExpense}
+                        />
 
-                    <SummaryCard
-                        title="Lowest Expense"
-                        amount={summary.lowestExpense}
-                    />
-
-                </section>
-
+                        <SummaryCard
+                            title="Lowest Expense"
+                            amount={summary.lowestExpense}
+                        />
+                    </section>
+                )}
             </main>
-
         </div>
     );
 }

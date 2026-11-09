@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { registerUser } from "../../services/userApi";
+import "./Register.css";
 
 function Register() {
 
@@ -83,16 +85,7 @@ function Register() {
             data.append("avatar", formData.avatar);
 
 
-            const response = await fetch(
-                "http://localhost:3000/api/v1/users/register",
-                {
-                    method: "POST",
-
-                    credentials: "include",
-
-                    body: data
-                }
-            );
+            const response = await registerUser(data);
 
 
             const result = await response.json();
