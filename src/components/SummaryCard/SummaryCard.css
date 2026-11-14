@@ -15,13 +15,24 @@
   border-color: var(--border-hover);
 }
 
+.summary-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .summary-title {
-  font-size: 0.85rem;
-  font-weight: 600;
+  font-size: 0.82rem;
+  font-weight: 700;
   color: var(--text-secondary);
   text-transform: uppercase;
   letter-spacing: 0.05em;
   margin: 0;
+}
+
+.summary-icon {
+  font-size: 1.25rem;
+  opacity: 0.9;
 }
 
 .summary-amount {

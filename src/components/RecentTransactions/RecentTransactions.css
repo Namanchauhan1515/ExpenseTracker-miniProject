@@ -1,0 +1,132 @@
+.recent-tx-card {
+  margin-top: 24px;
+}
+
+.recent-tx-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.recent-tx-header h3 {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+}
+
+.recent-tx-subtitle {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  margin-top: 2px;
+}
+
+.recent-tx-view-all {
+  color: var(--primary);
+  font-size: 0.88rem;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  transition: color var(--transition-fast);
+}
+
+.recent-tx-view-all:hover {
+  color: var(--secondary);
+}
+
+.recent-tx-empty {
+  text-align: center;
+  padding: 36px 20px;
+  color: var(--text-muted);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.recent-tx-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.recent-tx-item {
+  display: grid;
+  grid-template-columns: 2fr 1.5fr 1fr;
+  align-items: center;
+  padding: 14px 18px;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.recent-tx-item:hover {
+  background: var(--bg-card-hover);
+  border-color: var(--border-hover);
+}
+
+.recent-tx-left {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow: hidden;
+}
+
+.recent-tx-category {
+  font-weight: 700;
+  color: var(--text-main);
+  font-size: 0.95rem;
+}
+
+.recent-tx-desc {
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.recent-tx-meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.recent-tx-date {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.recent-tx-amount {
+  text-align: right;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #f87171;
+}
+
+.recent-tx-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 40px 20px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .recent-tx-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  .recent-tx-meta {
+    justify-content: space-between;
+  }
+  .recent-tx-amount {
+    text-align: left;
+  }
+}

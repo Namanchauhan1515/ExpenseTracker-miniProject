@@ -1,0 +1,74 @@
+.date-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.date-filter-presets {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.filter-preset-btn {
+  padding: 7px 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: var(--radius-full);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.filter-preset-btn:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-main);
+  border-color: var(--border-hover);
+}
+
+.filter-preset-btn.active {
+  background: rgba(99, 102, 241, 0.2);
+  color: #a5b4fc;
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.date-filter-custom {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.date-filter-custom .form-control {
+  max-width: 180px;
+}
+
+.date-filter-separator {
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}
+
+.btn-sm {
+  padding: 7px 14px;
+  font-size: 0.82rem;
+}
+
+@media (max-width: 600px) {
+  .date-filter-presets {
+    gap: 6px;
+  }
+  .filter-preset-btn {
+    padding: 6px 10px;
+    font-size: 0.78rem;
+  }
+  .date-filter-custom {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .date-filter-custom .form-control {
+    max-width: 100%;
+  }
+}

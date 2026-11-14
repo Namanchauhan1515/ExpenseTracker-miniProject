@@ -1,0 +1,47 @@
+.chart-header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.trend-view-selector {
+  display: inline-flex;
+  background: var(--bg-surface);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  padding: 3px;
+  gap: 2px;
+}
+
+.trend-view-btn {
+  background: transparent;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 0.76rem;
+  font-weight: 600;
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.trend-view-btn:hover {
+  color: var(--text-main);
+}
+
+.trend-view-btn.active {
+  background: var(--primary);
+  color: #ffffff;
+  box-shadow: var(--shadow-sm);
+}
+
+@media (max-width: 600px) {
+  .chart-header-left {
+    width: 100%;
+    justify-content: space-between;
+  }
+  .trend-view-selector {
+    margin-top: 6px;
+  }
+}
