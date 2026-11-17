@@ -50,6 +50,16 @@ function Sidebar() {
                     </NavLink>
 
                     <NavLink
+                        to="/budget"
+                        className={({ isActive }) =>
+                            `sidebar-link ${isActive ? "active" : ""}`
+                        }
+                    >
+                        <span>🎯</span>
+                        <span>Budget</span>
+                    </NavLink>
+
+                    <NavLink
                         to="/profile"
                         className={({ isActive }) =>
                             `sidebar-link ${isActive ? "active" : ""}`

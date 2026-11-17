@@ -5,6 +5,7 @@ import Register from "./pages/Register/Register";
 import Dashboard from "./pages/Dashboard/Dashboard";
 import Expenses from "./pages/Expenses/Expenses";
 import AddExpense from "./pages/AddExpense/AddExpense";
+import Budget from "./pages/Budget/Budget";
 import Profile from "./pages/Profile/Profile";
 import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 
@@ -37,6 +38,15 @@ function App() {
                 element={
                     <ProtectedRoute>
                         <AddExpense />
+                    </ProtectedRoute>
+                }
+            />
+
+            <Route
+                path="/budget"
+                element={
+                    <ProtectedRoute>
+                        <Budget />
                     </ProtectedRoute>
                 }
             />

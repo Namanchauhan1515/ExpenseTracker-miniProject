@@ -26,6 +26,11 @@ import dashboardRouter from "./routes/dashboard.route.js";
 
 app.use("/api/v1/dashboard", dashboardRouter);
 
+// Budget routes
+import budgetRouter from "./routes/budget.route.js";
+
+app.use("/api/v1/budgets", budgetRouter);
+
 app.use(errorHandler);
 
 app.get("/", (req, res) => {

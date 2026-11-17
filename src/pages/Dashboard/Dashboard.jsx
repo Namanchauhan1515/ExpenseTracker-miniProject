@@ -8,6 +8,7 @@ import CategoryPieChart from "../../components/Charts/CategoryPieChart";
 import DailyTrendChart from "../../components/Charts/DailyTrendChart";
 import PaymentMethodChart from "../../components/Charts/PaymentMethodChart";
 import MonthComparison from "../../components/MonthComparison/MonthComparison";
+import FinancialInsights from "../../components/FinancialInsights/FinancialInsights";
 import RecentTransactions from "../../components/RecentTransactions/RecentTransactions";
 import { getDashboardSummary } from "../../services/dashboardApi";
 import { getExpenses } from "../../services/expenseApi";
@@ -24,6 +25,7 @@ function Dashboard() {
     const [paymentMethodWise, setPaymentMethodWise] = useState([]);
     const [monthlySpending, setMonthlySpending] = useState([]);
     const [dailySpending, setDailySpending] = useState([]);
+    const [highestExpenseRecord, setHighestExpenseRecord] = useState(null);
     const [recentExpenses, setRecentExpenses] = useState([]);
 
     const [dateRange, setDateRange] = useState({ startDate: "", endDate: "" });
@@ -54,6 +56,7 @@ function Dashboard() {
                 setPaymentMethodWise(data.data.paymentMethodWise || []);
                 setMonthlySpending(data.data.monthlySpending || []);
                 setDailySpending(data.data.dailySpending || []);
+                setHighestExpenseRecord(data.data.highestExpenseRecord || null);
             }
         } catch (err) {
             console.error("Dashboard summary error:", err);
@@ -162,6 +165,16 @@ function Dashboard() {
                             <DailyTrendChart data={dailySpending} />
                             <PaymentMethodChart data={paymentMethodWise} />
                         </section>
+
+                        {/* Smart Financial Insights */}
+                        <FinancialInsights
+                            summary={summary}
+                            highestExpenseRecord={highestExpenseRecord}
+                            categoryWise={categoryWise}
+                            paymentMethodWise={paymentMethodWise}
+                            monthlySpending={monthlySpending}
+                            dailySpending={dailySpending}
+                        />
 
                         {/* Recent Transactions */}
                         <RecentTransactions

@@ -1,0 +1,44 @@
+.budget-page {
+  display: flex;
+  min-height: 100vh;
+  background: var(--bg-main);
+}
+
+.budget-main-content {
+  flex: 1;
+  padding: 36px 40px;
+  max-width: 1320px;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.budget-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 28px;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.budget-page-header h1 {
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--text-main);
+  letter-spacing: -0.02em;
+}
+
+.budget-page-subtitle {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+  margin-top: 4px;
+}
+
+@media (max-width: 900px) {
+  .budget-page {
+    flex-direction: column;
+  }
+  .budget-main-content {
+    padding: 24px 16px;
+  }
+}

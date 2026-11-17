@@ -1,5 +1,6 @@
 import jwt from "jsonwebtoken";
 import { User } from "../models/user.model.js";
+import { apiError } from "./apiError.js";
 const generateAccessAndRefreshToken = async (userId)=>{
     try{
         const user = await User.findById(userId)

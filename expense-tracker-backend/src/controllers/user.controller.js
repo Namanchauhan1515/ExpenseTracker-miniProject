@@ -27,7 +27,7 @@ const registerUser = asyncHandler(async (req, res) => {
     });
 
     if (existingUser) {
-        throw new apiError(409, "Username o r email already exists");
+        throw new apiError(409, "Username or email already exists");
     }
     const avatarLocalPath = req.file?.path;
     console.log("Avatar local path:", avatarLocalPath);
@@ -72,11 +72,16 @@ const loginUser = asyncHandler(async (req, res) => {
     if (!email?.trim() && !username?.trim()) {
         throw new apiError(400, "Email or username is required");
     }
-    const user = await User.findOne({
-        $or: [
-            { email },
-            { username}]       
-    })
+    const conditions = [];
+    if (email?.trim()) {
+        conditions.push({ email: email.trim().toLowerCase() });
+    }
+    if (username?.trim()) {
+        conditions.push({ username: username.trim().toLowerCase() });
+        conditions.push({ username: username.trim() });
+    }
+
+    const user = await User.findOne({ $or: conditions });
     if(!user){
         throw new apiError(404, "User not found");
     }
@@ -85,12 +90,11 @@ const loginUser = asyncHandler(async (req, res) => {
         throw new apiError(401, "Invalid password");
     }
     const { accessToken, refreshToken } = await generateAccessAndRefreshToken(user._id);
-    const loggedInUser = await User.findByIdAndUpdate(
-        user._id).select("-password -refreshToken");
-const options ={
-    httpOnly:true,
-    secure:true
-}
+    const loggedInUser = await User.findById(user._id).select("-password -refreshToken");
+    const options = {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production"
+    };
 return res.status(200)
 .cookie("accessToken",accessToken,options)
 .cookie("refreshToken",refreshToken,options)
@@ -116,7 +120,7 @@ const logoutUser = asyncHandler(async (req, res) => {
 
     const options = {
         httpOnly: true,
-        secure: true
+        secure: process.env.NODE_ENV === "production"
     };
 
     return res
@@ -148,10 +152,10 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
 
     const { accessToken, newRefreshToken } = await generateAccessAndRefreshToken(user._id);
-    const options ={
-    httpOnly:true,
-    secure:true
-}
+        const options = {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production"
+    };
 return res.status(200).cookie("accessToken",accessToken,options)
 .cookie("refreshToken",newRefreshToken,options)
 .json(new apiResponse(200,{

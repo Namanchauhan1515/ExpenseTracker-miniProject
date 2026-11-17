@@ -20,10 +20,10 @@ password:{
     required:true,
     minlength:6
 },
- avatar:  {
-      type: String,
-      required: true,
-      default: ""
+avatar:  {
+    type: String,
+    required: true,
+    default: ""
     },
 refreshToken:{
     type:String,

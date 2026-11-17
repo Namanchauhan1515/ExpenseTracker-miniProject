@@ -115,11 +115,17 @@ const getExpenseSummary = asyncHandler(async (req, res) => {
         }
     ]);
 
+    // Highest single expense details
+    const highestExpenseRecord = await Expense.findOne(matchStage)
+        .sort({ amount: -1 })
+        .select("amount category description paymentMethod date");
+
     return res.status(200).json(
         new apiResponse(
             200,
             {
                 summary: summaryData,
+                highestExpenseRecord,
                 categoryWise,
                 paymentMethodWise,
                 monthlySpending,
